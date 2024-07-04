@@ -1,6 +1,5 @@
-:root{
+:root {
   background-color: rgb(26, 26, 26);
-  
 }
 
 #d1 {
@@ -9,6 +8,14 @@
 
 #d2 {
   animation: fadeOut ease 1s;
+}
+
+#d3.fadeIn {
+  animation: fadeIn ease 1s forwards;
+}
+
+#d3.fadeOut {
+  animation: fadeOut ease 1s forwards;
 }
 
 @keyframes fadeIn {
@@ -27,5 +34,9 @@
     opacity: 1;
     transform: scale(1);
   }
-  
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
 }
+

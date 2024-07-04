@@ -1,87 +1,153 @@
-import { useState } from "react";
-import { AllData } from "../Test/TestData";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import IndividualProgress from "./ProgressBarIndividual";
 import ProgressElement from "./ProgressElement";
 import TypeBox from "./TypeBox";
 
 export default function Scorecard() {
+  const LeetcodeId = `1mJ798C6CC`; //Add your Leetcode id here
+
   const bgColor = "bg-[#282828]";
-  const EasyColour="text-teal-500"
-  const MedColour="text-yellow-500"
-  const HardColour="text-red-500"
-  const BaseColour ="text-violet-500"
+  const EasyColour = "text-teal-500";
+  const MedColour = "text-yellow-500";
+  const HardColour = "text-red-500";
+  const BaseColour = "text-violet-500";
+  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [percent, setPercent] = useState(0);
+  const [barColour, setBarColour] = useState(BaseColour); // Ensure BaseColour is defined
 
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true); // Set loading state to true
+      try {
+        const response = await axios.get(
+          `https://leetcode-stats-api.herokuapp.com/${LeetcodeId}`
+        );
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false); // Set loading state to false
+      }
+    };
 
-  const [percent,setPercent] = useState((AllData.matchedUser.submitStatsGlobal.acSubmissionNum[0].count/AllData.allQuestionsCount[0].count)*100);
-  const [barColour,SetBarColour]= useState(BaseColour);
-  const [beatsStatus, setBeatsStatus] = useState(false)
+    fetchData(); // Call the function on component mount
+  }, []);
 
-  function onHover(value,questionColour,beatsPercent){
+  useEffect(() => {
+    if (data.totalSolved && data.totalQuestions) {
+      setPercent((data.totalSolved / data.totalQuestions) * 100);
+    }
+  }, [data]);
+
+  function onHover(value, questionColour) {
     setPercent(value);
-    SetBarColour(questionColour);
-    setBeatsStatus(beatsPercent);
+    setBarColour(questionColour);
   }
 
-  function onMouseLeave(){
-    setPercent((AllData.matchedUser.submitStatsGlobal.acSubmissionNum[0].count/AllData.allQuestionsCount[0].count)*100)
-    SetBarColour(BaseColour);
-    setBeatsStatus(false);
+  function onMouseLeave() {
+    setPercent((data.totalSolved / data.totalQuestions) * 100);
+    setBarColour(BaseColour);
   }
 
   return (
-    <div
-      className={
-        "flex items-center xl:w-1/2 lg-w-1/2 h-max mx-auto rounded-lg " +
-        bgColor
-      }
-    >
-      <div className="lg:w-4/6 xl:5/6">
-        <IndividualProgress barColour={barColour} progress={percent}>
-          <ProgressElement BeatsPercent={beatsStatus} 
-          solvedStatus={AllData.matchedUser.submitStatsGlobal.acSubmissionNum[0].count}
-          TotalStatus={AllData.allQuestionsCount[0].count} />
-        </IndividualProgress>
-      </div>
-      <div className="lg:w-2/6 xl:1/6 h-full flex-row items-end flex-1">
-        <TypeBox
-          onHoverFn={onHover}
-          onMouseLeave={onMouseLeave}
-          questionType={"Easy"}
-          questionColour={EasyColour}
-          solvedStatus={AllData.matchedUser.submitStatsGlobal.acSubmissionNum[1].count}
-          TotalStatus={AllData.allQuestionsCount[1].count}
-          beatsPercent={AllData.matchedUser.problemsSolvedBeatsStats[0].percentage}
-        />
-        <TypeBox
-          onHoverFn={onHover}
-          onMouseLeave={onMouseLeave}
-          questionType={"Med."}
-          questionColour={MedColour}
-          solvedStatus={AllData.matchedUser.submitStatsGlobal.acSubmissionNum[2].count}
-          TotalStatus={AllData.allQuestionsCount[2].count}
-          beatsPercent={AllData.matchedUser.problemsSolvedBeatsStats[1].percentage}
-        />
-        <TypeBox
-          onHoverFn={onHover}
-          onMouseLeave={onMouseLeave}
-          questionType={"Hard"}
-          questionColour={HardColour}
-          solvedStatus={AllData.matchedUser.submitStatsGlobal.acSubmissionNum[3].count}
-          TotalStatus={AllData.allQuestionsCount[3].count}
-          beatsPercent={AllData.matchedUser.problemsSolvedBeatsStats[2].percentage}
-        />
-      </div>
+    <div>
+      {isLoading ? (
+        <div
+          className={
+            "flex items-center xl:w-1/2 lg-w-1/2 h-max  mx-auto rounded-lg " +
+            bgColor
+          }
+        >
+          <button
+            type="button"
+            class="bg-indigo-500 text-white font-semibold py-48 px-48 mx-auto rounded inline-flex items-center"
+            disabled
+          >
+            <svg
+              class="animate-spin h-5 w-5 mr-3 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v4l-4 4-4-4z"
+              ></path>
+            </svg>
+            Processing...
+          </button>
+        </div>
+      ) : (
+        <div
+          className={
+            "flex items-center xl:w-1/2 lg-w-1/2 py-4 px-2 h-max mx-auto rounded-lg " +
+            bgColor
+          }
+        >
+          <div className="lg:w-4/6 xl:5/6 md:1/2 sm:w-full">
+            <br />
 
-      {/* only for testing */}
-      {/* <input
-        type="range"
-        min="1"
-        max="100"
-        value={percent}
-        onChange={onChange}
-        className="slider"
-        id="myRange"
-      /> */}
+            <IndividualProgress barColour={barColour} progress={percent}>
+              {console.log(percent)}
+              <ProgressElement
+                solvedStatus={data.totalSolved}
+                TotalStatus={data.totalQuestions}
+                acceptanceRate={data.acceptanceRate}
+                LeetId={LeetcodeId}
+              />
+            </IndividualProgress>
+            <h1 className="text-white w-1/2 text-center mx-auto">
+              Global Ranking: <br/>{data.ranking} 
+            </h1>
+          </div>
+          <div className="lg:w-2/6 xl:1/6  h-full flex-row items-end flex-1">
+            <TypeBox
+              onHoverFn={onHover}
+              onMouseLeave={onMouseLeave}
+              questionType={"Easy"}
+              questionColour={EasyColour}
+              solvedStatus={data.easySolved}
+              TotalStatus={data.totalEasy}
+            />
+            <TypeBox
+              onHoverFn={onHover}
+              onMouseLeave={onMouseLeave}
+              questionType={"Med."}
+              questionColour={MedColour}
+              solvedStatus={data.mediumSolved}
+              TotalStatus={data.totalMedium}
+            />
+            <TypeBox
+              onHoverFn={onHover}
+              onMouseLeave={onMouseLeave}
+              questionType={"Hard"}
+              questionColour={HardColour}
+              solvedStatus={data.hardSolved}
+              TotalStatus={data.totalHard}
+            />
+            <a href={`https://leetcode.com/u/${LeetcodeId}`}>
+            <div
+              
+              className="relative text-white w-32 bg-yellow-600 hover:bg-yellow-700 duration-300  h-max text-center right-0 rounded-lg my-4 mx-auto px-6 py-1"
+            >
+              Visit Profile
+            </div>
+            </a>
+          </div>
+          <br />
+        </div>
+      )}
     </div>
   );
 }

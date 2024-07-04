@@ -5,7 +5,6 @@ export default function TypeBox({
   questionColour,
   solvedStatus,
   TotalStatus,
-  beatsPercent,
 }) {
   return (
     <>
@@ -13,12 +12,11 @@ export default function TypeBox({
         onMouseEnter={() =>
           onHoverFn(
             (solvedStatus * 100) / TotalStatus,
-            questionColour,
-            beatsPercent
+            questionColour
           )
         }
         onMouseLeave={onMouseLeave}
-        className=" h-max max-w-36 right-0 bg-[#353535] rounded-lg my-4 mx-2 px-6 py-1"
+        className=" h-max max-w-36 right-0 bg-[#353535] rounded-lg my-4 mx-auto px-6 py-1"
       >
         <h1 className={"w-full font-semibold text-center text-lg " + questionColour}>
           {questionType}
