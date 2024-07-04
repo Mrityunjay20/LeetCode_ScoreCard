@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AllData } from "../Test/TestData";
-import IndividualProgress from "./ProgressBarInividual";
+import IndividualProgress from "./ProgressBarIndividual";
 import ProgressElement from "./ProgressElement";
 import TypeBox from "./TypeBox";
 
