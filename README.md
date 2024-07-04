@@ -44,7 +44,7 @@ Start the server
 ## Usage/Examples
 
 - Open ScoreCard.jsx.
-- Find the line const leetCodeUsername = 'your-leetcode-username'; and replace 'your-leetcode-username' with your actual LeetCode username.
+- Find the line const LeetcodeId = 'your-leetcode-username'; and replace 'your-leetcode-username' with your actual LeetCode username.
 - Save the file.
 
 ```javascript
