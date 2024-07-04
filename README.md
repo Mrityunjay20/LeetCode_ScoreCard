@@ -76,9 +76,6 @@ Open your browser and go to http://localhost:5173 to see the LeetCode progress t
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request with your improvements.
 
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ## Acknowledgments
 Thank you to React and Tailwind CSS communities for their excellent tools.
     
