@@ -33,7 +33,7 @@ export default function ProgressElement({ solvedStatus, TotalStatus, LeetId, acc
           }
         </div>
         <p className="items-end text-center -mt-12 mb-1 text-white opacity-60">
-        Acceptance<br/> Rate for user{" "}
+        Acceptance<br/> Rate for User{" "}
         </p>
       </div>
       ) : (

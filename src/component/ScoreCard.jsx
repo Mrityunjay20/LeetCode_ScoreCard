@@ -75,7 +75,7 @@ export default function Scorecard() {
       {isLoading ? (
         <div
           className={
-            "flex items-center xl:w-1/2 lg-w-1/2 h-max  mx-auto rounded-lg " +
+            "flex items-center xl:w-1/2 lg-w-1/2 h-max mx-auto rounded-lg " +
             bgColor
           }
         >
@@ -110,7 +110,7 @@ export default function Scorecard() {
       ) : (
         <div
           className={
-            "flex xl:w-1/2 py-4 px-2 h-max mx-auto  rounded-lg " +
+            "flex xl:w-1/2 lg:w-1/2 md:w-2/3 py-4 px-2 h-max mx-auto  rounded-lg " +
             bgColor
           }
         >
