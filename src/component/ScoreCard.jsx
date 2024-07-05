@@ -5,7 +5,7 @@ import ProgressElement from "./ProgressElement";
 import TypeBox from "./TypeBox";
 
 export default function Scorecard() {
-  const LeetcodeId = ``; //Add your Leetcode id here
+  const LeetcodeId = `anmolchoubey02`; //Add your Leetcode id here
 
   const bgColor = "bg-[#282828]";
   const EasyColour = "text-teal-500";
