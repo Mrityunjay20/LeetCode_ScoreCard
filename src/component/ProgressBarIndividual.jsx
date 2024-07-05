@@ -7,7 +7,7 @@ export default function IndividualProgress({ barColour, progress, children }) {
   const dashOffset = 100 - clampedProgress;
 
   return (
-    <div className="relative size-56 mx-auto">
+    <div className="relative  size-56 mx-auto">
       <svg
         className="size-full"
         width="36"
@@ -42,7 +42,7 @@ export default function IndividualProgress({ barColour, progress, children }) {
           ></circle>
         </g>
       </svg>
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute pl:8 inset-0 flex items-center justify-center">
         {children}
       </div>
     </div>

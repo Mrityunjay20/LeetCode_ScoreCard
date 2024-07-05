@@ -71,7 +71,7 @@ export default function Scorecard() {
   }
 
   return (
-    <div>
+    <div className="">
       {isLoading ? (
         <div
           className={
@@ -110,11 +110,11 @@ export default function Scorecard() {
       ) : (
         <div
           className={
-            "flex items-center xl:w-1/2 lg-w-1/2 py-4 px-2 h-max mx-auto rounded-lg " +
+            "flex xl:w-1/2 py-4 px-2 h-max mx-auto  rounded-lg " +
             bgColor
           }
         >
-          <div className="lg:w-4/6 xl:5/6 md:1/2 sm:w-full">
+          <div className="w-1/2 sm:pl-8">
             <br />
 
             <IndividualProgress barColour={barColour} progress={percent}>
@@ -132,7 +132,7 @@ export default function Scorecard() {
               Global Ranking: <br/>{data.ranking} 
             </h1>
           </div>
-          <div className="lg:w-2/6 xl:1/6  h-full flex-row items-end flex-1">
+          <div className="g:w-3/6 sm:w-3/6 sm:pl-8  h-full flex-row items-end flex-1">
             <TypeBox
               onHoverFn={onHover}
               onMouseLeave={onMouseLeave}

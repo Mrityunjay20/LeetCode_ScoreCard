@@ -21,7 +21,7 @@ export default function ProgressElement({ solvedStatus, TotalStatus, LeetId, acc
       onMouseLeave={handleMouseLeave}
     >
       {isHovered ? (
-        <div className="h-48 w-48 my-12  rounded-full items-center mx-auto ">
+        <div className="h-48 w-54 my-12 mx-8  rounded-full items-center mx-auto ">
         <div className="flex flex-col justify-center  items-center mx-auto text-center text-white h-full">
           {
             <div id="d1" className="duration-500 fadeIn">
