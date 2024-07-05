@@ -101,6 +101,8 @@ export default function Scorecard() {
             <IndividualProgress barColour={barColour} progress={percent}>
               {console.log(percent)}
               <ProgressElement
+                onHoverFn={onHover}
+                onMouseLeave={onMouseLeave}
                 solvedStatus={data.totalSolved}
                 TotalStatus={data.totalQuestions}
                 acceptanceRate={data.acceptanceRate}

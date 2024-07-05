@@ -1,14 +1,16 @@
 import { useState } from "react";
 import "../App.css";
-export default function ProgressElement({ solvedStatus, TotalStatus, LeetId, acceptanceRate }) {
+export default function ProgressElement({ solvedStatus, TotalStatus, LeetId, acceptanceRate, onHoverFn, onMouseLeave }) {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
+    onHoverFn(acceptanceRate, "text-green-500")
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
+    onMouseLeave();
   };
 
   return (
