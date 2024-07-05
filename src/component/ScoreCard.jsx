@@ -42,13 +42,32 @@ export default function Scorecard() {
   }, [data]);
 
   function onHover(value, questionColour) {
-    setPercent(value);
-    setBarColour(questionColour);
+    setPercent(0);
+    // setTimeout(() => {
+    //   setBarColour("text-gray-200");
+    // }, 200);
+    
+
+    // Use setTimeout with 1000 milliseconds (1 second) delay
+    setTimeout(() => {
+      // After the delay, set the percent to the desired value
+      setPercent(value);
+      setBarColour(questionColour);
+    }, 200);
+    
+    
   }
 
   function onMouseLeave() {
-    setPercent((data.totalSolved / data.totalQuestions) * 100);
-    setBarColour(BaseColour);
+    setPercent(0);
+    // setTimeout(() => {
+    //   setBarColour("text-gray-200");
+    // }, 200);
+    setTimeout(() => {
+      setPercent((data.totalSolved / data.totalQuestions) * 100);
+      setBarColour(BaseColour);
+    }, 200);
+    
   }
 
   return (
