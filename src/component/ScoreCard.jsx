@@ -53,7 +53,7 @@ export default function Scorecard() {
       // After the delay, set the percent to the desired value
       setPercent(value);
       setBarColour(questionColour);
-    }, 200);
+    }, 300);
     
     
   }
@@ -66,7 +66,7 @@ export default function Scorecard() {
     setTimeout(() => {
       setPercent((data.totalSolved / data.totalQuestions) * 100);
       setBarColour(BaseColour);
-    }, 200);
+    }, 300);
     
   }
 
